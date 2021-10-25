@@ -27,12 +27,32 @@ class PropertyController extends AbstractController
     }
 
     /**
-     * @Route("/acheter", name="BUY")
+     * @Route("/acheter", name="PROPERTIES")
      * @return Response
      */
     public function buy(): Response
     {
-        return $this->render('default/buy.html.twig', [
+        return $this->render('default/properties.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/acheter/{slug}-{id}", name="PROPERTY_SHOW", requirements={"slug": "[a-z0-9\-]*"})
+     * @return Response
+     */
+    public function show($slug, $id): Response
+    {
+        $property = $this->propertyRepository->find($id);
+
+        if ($slug !== $property->getSlug()) {
+            return $this->redirectToRoute('PROPERTY_SHOW', [
+                'slug' => $property->getSlug(),
+                'id'   => $id
+            ]);
+        }
+
+        return $this->render('default/property_show.html.twig', [
+            'property' => $property
         ]);
     }
 }

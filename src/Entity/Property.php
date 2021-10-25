@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
@@ -111,6 +112,11 @@ class Property
         return $this;
     }
 
+    public function getSlug(): string
+    {
+        return (string)(new AsciiSlugger())->slug($this->getTitle())->lower();
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -181,6 +187,11 @@ class Property
         $this->price = $price;
 
         return $this;
+    }
+
+    public function getFormattedPrice(): string
+    {
+        return number_format($this->price, 0, '', ' ');
     }
 
     public function getHeat(): ?int
