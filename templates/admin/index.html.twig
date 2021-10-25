@@ -1,0 +1,35 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <section class="my-5">
+            <h1>Gérer les propriétés</h1>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for property in properties %}
+                    <tr>
+                        <td>{{ property.title }}</td>
+                        <td>
+                            <a href="{{ path('ADMIN_PROPERTY_EDIT') }}" class="btn btn-primary btn-sm">Éditer</a>
+                            <a href="#" class="btn btn-primary btn-sm">Supprimer</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </section>
+
+    </div>
+
+{% endblock %}

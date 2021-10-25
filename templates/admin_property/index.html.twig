@@ -1,0 +1,60 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Property index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="my-5">
+            <h1>Property index</h1>
+
+            <hr class="my-4">
+
+            <p class="my-4"><a href="{{ path('ADMIN_PROPERTY_NEW') }}">Create new</a></p>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Surface</th>
+                    <th>Pièces</th>
+                    <th>Chambres</th>
+                    <th>Étages</th>
+                    <th>Prix</th>
+                    <th>Chauffage</th>
+                    <th>Adresse</th>
+                    <th>Vendu</th>
+                    <th>Ajouté le</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for property in properties %}
+                    <tr>
+                        <td>{{ property.title }}</td>
+                        <td>{{ property.description }}</td>
+                        <td>{{ property.surface }}</td>
+                        <td>{{ property.rooms }}</td>
+                        <td>{{ property.bedrooms }}</td>
+                        <td>{{ property.floor }}</td>
+                        <td>{{ property.formattedPrice }}</td>
+                        <td>{{ property.heatType }}</td>
+                        <td>{{ property.address }}, {{ property.postalCode }} {{ property.city }}</td>
+                        <td>{{ property.sold ? 'Yes' : 'No' }}</td>
+                        <td>{{ property.createdAt ? property.createdAt|date('d-m-Y') }}</td>
+                        <td>
+                            <a href="{{ path('ADMIN_PROPERTY_SHOW', {'id': property.id}) }}">show</a>
+                            <a href="{{ path('ADMIN_PROPERTY_EDIT', {'id': property.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="15">Aucune propriété trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </section>
+    </div>
+{% endblock %}
