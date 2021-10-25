@@ -1,11 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}{{ property.title }}{% endblock %}
 
 {% block body %}
+
     <div class="container">
+
         <section class="my-5">
             <h1>{{ property.title }}</h1>
         </section>
+
+        <section class="my-5">
+            <h2>Caractéristiques</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Titre</td>
+                            <td>{{ property.title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{ property.description }}</td>
+                        </tr>
+                        <tr>
+                            <td>Surface</td>
+                            <td>{{ property.surface }}</td>
+                        </tr>
+                        <tr>
+                            <td>Pièces</td>
+                            <td>{{ property.rooms }}</td>
+                        </tr>
+                        <tr>
+                            <td>Chambres</td>
+                            <td>{{ property.bedrooms }}</td>
+                        </tr>
+                        <tr>
+                            <td>Étage(s)</td>
+                            <td>{{ property.floor }}</td>
+                        </tr>
+                        <tr>
+                            <td>Prix</td>
+                            <td>{{ property.price }}</td>
+                        </tr>
+                        <tr>
+                            <td>Chauffage</td>
+                            <td>{{ property.heatType }}</td>
+                        </tr>
+                        <tr>
+                            <td>Adresse</td>
+                            <td>{{ property.address }}, {{ property.postalCode }} {{ property.city }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-5">
+            <h2>Spécificités</h2>
+        </section>
+
     </div>
+
 {% endblock %}
