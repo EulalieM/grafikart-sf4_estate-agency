@@ -13,7 +13,7 @@
                         <div class="card mb-4">
                             <div class="card-body text-center">
                                 <h5 class="card-title mb-4">
-                                    <a href="{{ path('PROPERTY_SHOW', {slug: property.slug, id: property.id}) }}">{{ property.title }}</a>
+                                    <a href="{{ path('PROPERTY', {slug: property.slug, id: property.id}) }}">{{ property.title }}</a>
                                 </h5>
                                 <p class="card-text">
                                     {{ property.city }} {{ property.postalCode }}
@@ -23,6 +23,9 @@
                         </div>
                     </div>
             {% endfor %}
+            </div>
+            <div class="pagination">
+                {{ knp_pagination_render(properties) }}
             </div>
         </section>
     </div>
