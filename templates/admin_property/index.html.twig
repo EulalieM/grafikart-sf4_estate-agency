@@ -52,7 +52,7 @@
                         <td>
                             <a href="{{ path('ADMIN_PROPERTY_SHOW', {'id': property.id}) }}" class="btn btn-primary btn-sm">Voir</a><br>
                             <a href="{{ path('ADMIN_PROPERTY_EDIT', {'id': property.id}) }}" class="btn btn-primary btn-sm my-1">Modifier</a><br>
-                            <a href="{{ path('ADMIN_PROPERTY_DELETE', {'id': property.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                            {{ include('admin_property/_delete_form.html.twig') }}
                         </td>
                     </tr>
                 {% else %}
