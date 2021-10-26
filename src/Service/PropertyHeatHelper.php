@@ -4,35 +4,39 @@ namespace App\Service;
 
 class PropertyHeatHelper
 {
+    const GAS_KEY = 'gas';
+    const GAS_LABEL = 'Gaz';
 
-//    const HEAT = [
-//        'Gaz' => 'HEAT_GAS_LABEL',
-//        'Électrique' => 'HEAT_ELECTRIC_LABEL',
-//        'Bois' => 'HEAT_WOOD_LABEL'
-//    ];
+    const ELECTRIC_KEY = 'electric';
+    const ELECTRIC_LABEL = 'Électrique';
 
-    const HEAT = [
-        'Gaz' => 'Gaz',
-        'Électrique' => 'Électrique',
-        'Bois' => 'Bois'
+    const WOOD_KEY = 'wood';
+    const WOOD_LABEL = 'Bois';
+
+    const VALUES = [
+        self::GAS_KEY => self::GAS_LABEL,
+        self::ELECTRIC_KEY => self::ELECTRIC_LABEL,
+        self::WOOD_KEY => self::WOOD_LABEL,
     ];
 
     /**
      * @return array[]
      */
-    public function getHeats(): array
+    public static function getChoices(): array
     {
-        return self::HEAT;
+        return array_flip(self::VALUES);
     }
 
-//    public function getHeatsKey()
-//    {
-//        $heats = self::HEAT;
-//        $output = [];
-//        foreach ($heats as $k => $v) {
-//            $output[$v] = $k;
-//        }
-//        return $output;
-//    }
+    /**
+     * @param string $key
+     * @return string
+     */
+    public static function getLabel(string $key): string
+    {
+        if (array_key_exists($key, self::VALUES)) {
+            return self::VALUES[$key];
+        }
+        return $key;
+    }
 
 }

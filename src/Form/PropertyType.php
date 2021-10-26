@@ -42,7 +42,7 @@ class PropertyType extends AbstractType
             ])
             ->add('heat', ChoiceType::class, [
                 'label' => 'Chauffage',
-                'choices' => PropertyHeatHelper::HEAT,
+                'choices' => PropertyHeatHelper::getChoices(),
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',

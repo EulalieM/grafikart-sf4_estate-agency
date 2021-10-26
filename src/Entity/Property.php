@@ -200,10 +200,10 @@ class Property
         return $this;
     }
 
-//    public function getHeatType(PropertyHeatHelper $helper): array
-//    {
-//        return $helper->getHeatsKey();
-//    }
+    public function getHeatLabel(): string
+    {
+        return PropertyHeatHelper::getLabel($this->getHeat());
+    }
 
     public function getCity(): ?string
     {
