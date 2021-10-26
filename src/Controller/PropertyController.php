@@ -32,7 +32,10 @@ class PropertyController extends AbstractController
      */
     public function buy(): Response
     {
+        $properties = $this->propertyRepository->findAllVisible();
+
         return $this->render('default/properties.html.twig', [
+            'properties' => $properties,
         ]);
     }
 

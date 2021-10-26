@@ -6,7 +6,24 @@
 
     <div class="container">
         <section class="my-5">
-            <h1>Acheter</h1>
+            <h1 class="mb-5">Acheter</h1>
+            <div class="row">
+            {% for property in properties %}
+                <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body text-center">
+                                <h5 class="card-title mb-4">
+                                    <a href="{{ path('PROPERTY_SHOW', {slug: property.slug, id: property.id}) }}">{{ property.title }}</a>
+                                </h5>
+                                <p class="card-text">
+                                    {{ property.city }} {{ property.postalCode }}
+                                </p>
+                                <div class="text-primary fw-bold fs-1 mb-0">{{ property.formattedPrice }} €</div>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+            </div>
         </section>
     </div>
 
