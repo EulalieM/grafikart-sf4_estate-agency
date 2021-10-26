@@ -18,13 +18,13 @@ class PropertyFixture extends Fixture
             $property = new Property();
             $property
                 ->setTitle($faker->words(3, true))
-                ->setDescription($faker->realText(200))
+                ->setDescription($faker->optional()->realText(200))
                 ->setSurface($faker->numberBetween(20, 250))
                 ->setRooms($faker->numberBetween(2, 10))
                 ->setBedrooms($faker->numberBetween(1, 6))
                 ->setFloor($faker->numberBetween(0, 5))
                 ->setPrice($faker->numberBetween(30000, 450000))
-                ->setHeat($faker->randomElement(['gaz', 'electrique', 'bois']))
+                ->setHeat($faker->randomElement(PropertyHeatHelper::getChoices()))
                 ->setCity($faker->city)
                 ->setAddress($faker->address)
                 ->setPostalCode($faker->postcode)
