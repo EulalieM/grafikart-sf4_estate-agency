@@ -202,7 +202,7 @@ class Property
 
 //    public function getHeatType(PropertyHeatHelper $helper): array
 //    {
-//        return $helper->getHeats();
+//        return $helper->getHeatsKey();
 //    }
 
     public function getCity(): ?string

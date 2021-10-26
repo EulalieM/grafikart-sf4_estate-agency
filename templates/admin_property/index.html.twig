@@ -45,16 +45,19 @@
                             {{ property.address }}<br>
                             {{ property.postalCode }} {{ property.city }}
                         </td>
-                        <td>{{ property.sold ? 'Yes' : 'No' }}</td>
+                        <td>
+                            {{ property.sold ? 'OUI' : 'NON' }}
+                        </td>
                         <td>{{ property.createdAt ? property.createdAt|date('d-m-Y') }}</td>
                         <td>
-                            <a href="{{ path('ADMIN_PROPERTY_SHOW', {'id': property.id}) }}" class="btn btn-primary btn-sm">Voir</a>
-                            <a href="{{ path('ADMIN_PROPERTY_EDIT', {'id': property.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
+                            <a href="{{ path('ADMIN_PROPERTY_SHOW', {'id': property.id}) }}" class="btn btn-primary btn-sm">Voir</a><br>
+                            <a href="{{ path('ADMIN_PROPERTY_EDIT', {'id': property.id}) }}" class="btn btn-primary btn-sm my-1">Modifier</a><br>
+                            <a href="{{ path('ADMIN_PROPERTY_DELETE', {'id': property.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
                         </td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="15">Aucune propriété trouvé</td>
+                        <td colspan="15">Aucun bien enregistré</td>
                     </tr>
                 {% endfor %}
                 </tbody>
