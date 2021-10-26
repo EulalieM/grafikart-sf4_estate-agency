@@ -1,16 +1,20 @@
 {% extends 'base-admin.html.twig' %}
 
-{% block title %}New Property{% endblock %}
+{% block title %}Nouveau bien{% endblock %}
 
 {% block body %}
 
     <div class="container">
         <section class="my-5">
-            <h1>Create new Property</h1>
+
+            <h1>Créer un nouveau bien</h1>
+
+            <hr class="my-4">
+
+            <p class="my-4"><a href="{{ path('ADMIN_PROPERTY_INDEX') }}" class="btn btn-primary btn-sm">Retour à la liste</a></p>
 
             {{ include('admin_property/_form.html.twig') }}
 
-            <a href="{{ path('ADMIN_PROPERTY_INDEX') }}">back to list</a>
         </section>
     </div>
 

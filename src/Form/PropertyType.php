@@ -3,7 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Property;
+use App\Service\PropertyHeatHelper;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,19 +20,43 @@ class PropertyType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-
+                'label' => 'Titre',
             ])
-            ->add('description')
-            ->add('surface')
-            ->add('rooms')
-            ->add('bedrooms')
-            ->add('floor')
-            ->add('price')
-            ->add('heat')
-            ->add('city')
-            ->add('address')
-            ->add('postal_code')
-            ->add('sold')
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+            ])
+            ->add('surface', IntegerType::class, [
+                'label' => 'Surface (en m²)',
+            ])
+            ->add('rooms', IntegerType::class, [
+                'label' => 'Pièces'
+            ])
+            ->add('bedrooms', IntegerType::class, [
+                'label' => 'Chambres'
+            ])
+            ->add('floor', IntegerType::class, [
+                'label' => 'Étages',
+            ])
+            ->add('price', IntegerType::class, [
+                'label' => 'Prix',
+            ])
+            ->add('heat', ChoiceType::class, [
+                'label' => 'Chauffage',
+                'choices' => PropertyHeatHelper::HEAT,
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville',
+            ])
+            ->add('address', TextType::class, [
+                'label' => 'Adresse',
+            ])
+            ->add('postal_code', TextType::class, [
+                'label' => 'Code postal',
+            ])
+            ->add('sold', CheckboxType::class, [
+                'label' => 'Vendu',
+                'required' => false
+            ])
         ;
     }
 
@@ -36,4 +66,5 @@ class PropertyType extends AbstractType
             'data_class' => Property::class,
         ]);
     }
+
 }

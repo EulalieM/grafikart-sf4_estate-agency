@@ -3,13 +3,15 @@
 {% block title %}Property index{% endblock %}
 
 {% block body %}
+
     <div class="container">
         <section class="my-5">
-            <h1>Property index</h1>
+
+            <h1>Tableau de bord</h1>
 
             <hr class="my-4">
 
-            <p class="my-4"><a href="{{ path('ADMIN_PROPERTY_NEW') }}">Create new</a></p>
+            <p class="my-4"><a href="{{ path('ADMIN_PROPERTY_NEW') }}" class="btn btn-primary btn-sm">Créer un nouveau bien</a></p>
 
             <table class="table table-striped">
                 <thead>
@@ -33,18 +35,21 @@
                     <tr>
                         <td>{{ property.title }}</td>
                         <td>{{ property.description }}</td>
-                        <td>{{ property.surface }}</td>
+                        <td>{{ property.surface }} m²</td>
                         <td>{{ property.rooms }}</td>
                         <td>{{ property.bedrooms }}</td>
                         <td>{{ property.floor }}</td>
                         <td>{{ property.formattedPrice }}</td>
-                        <td>{{ property.heatType }}</td>
-                        <td>{{ property.address }}, {{ property.postalCode }} {{ property.city }}</td>
+                        <td>{{ property.heat }}</td>
+                        <td>
+                            {{ property.address }}<br>
+                            {{ property.postalCode }} {{ property.city }}
+                        </td>
                         <td>{{ property.sold ? 'Yes' : 'No' }}</td>
                         <td>{{ property.createdAt ? property.createdAt|date('d-m-Y') }}</td>
                         <td>
-                            <a href="{{ path('ADMIN_PROPERTY_SHOW', {'id': property.id}) }}">show</a>
-                            <a href="{{ path('ADMIN_PROPERTY_EDIT', {'id': property.id}) }}">edit</a>
+                            <a href="{{ path('ADMIN_PROPERTY_SHOW', {'id': property.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                            <a href="{{ path('ADMIN_PROPERTY_EDIT', {'id': property.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
                         </td>
                     </tr>
                 {% else %}
@@ -57,4 +62,5 @@
 
         </section>
     </div>
+
 {% endblock %}

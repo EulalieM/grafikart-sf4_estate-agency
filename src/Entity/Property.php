@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PropertyRepository;
+use App\Service\PropertyHeatHelper;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
@@ -11,13 +12,6 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
  */
 class Property
 {
-
-    const HEAT = [
-        0 => 'electric',
-        1 => 'gas',
-        2 => 'wood'
-    ];
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -61,7 +55,7 @@ class Property
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $heat;
 
@@ -194,22 +188,22 @@ class Property
         return number_format($this->price, 0, '', ' ');
     }
 
-    public function getHeat(): ?int
+    public function getHeat(): ?string
     {
         return $this->heat;
     }
 
-    public function setHeat(int $heat): self
+    public function setHeat(string $heat): self
     {
         $this->heat = $heat;
 
         return $this;
     }
 
-    public function getHeatType(): string
-    {
-        return self::HEAT[$this->heat];
-    }
+//    public function getHeatType(PropertyHeatHelper $helper): array
+//    {
+//        return $helper->getHeats();
+//    }
 
     public function getCity(): ?string
     {
