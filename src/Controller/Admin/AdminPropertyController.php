@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Property;
 use App\Form\PropertyType;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin")
+ * @Route("/admin/property")
  */
 class AdminPropertyController extends AbstractController
 {
@@ -20,7 +20,7 @@ class AdminPropertyController extends AbstractController
      */
     public function index(PropertyRepository $propertyRepository): Response
     {
-        return $this->render('admin_property/index.html.twig', [
+        return $this->render('admin/property/index.html.twig', [
             'properties' => $propertyRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class AdminPropertyController extends AbstractController
             return $this->redirectToRoute('ADMIN_PROPERTY_INDEX', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_property/new.html.twig', [
+        return $this->renderForm('admin/property/new.html.twig', [
             'property' => $property,
             'form' => $form,
         ]);
@@ -53,7 +53,7 @@ class AdminPropertyController extends AbstractController
      */
     public function show(Property $property): Response
     {
-        return $this->render('admin_property/show.html.twig', [
+        return $this->render('admin/property/show.html.twig', [
             'property' => $property,
         ]);
     }
@@ -72,7 +72,7 @@ class AdminPropertyController extends AbstractController
             return $this->redirectToRoute('ADMIN_PROPERTY_INDEX', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_property/edit.html.twig', [
+        return $this->renderForm('admin/property/edit.html.twig', [
             'property' => $property,
             'form' => $form,
         ]);

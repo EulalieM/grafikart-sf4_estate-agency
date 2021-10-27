@@ -1,0 +1,43 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %} - Spécifications{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <section class="my-5">
+
+            <h1>Specifications</h1>
+
+            <hr class="my-4">
+
+            <p class="my-4"><a href="{{ path('ADMIN_SPECIFICATION_NEW') }}" class="btn btn-primary btn-sm">Créer une nouvelle spécificité</a></p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for specification in specifications %}
+                    <tr>
+                        <td>{{ specification.name }}</td>
+                        <td>
+                            <a href="{{ path('ADMIN_SPECIFICATION_EDIT', {'id': specification.id}) }}" class="btn btn-primary btn-sm my-1">Modifier</a>
+                            {{ include('admin/specification/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Aucune spécificité enregistrée</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </section>
+    </div>
+
+{% endblock %}

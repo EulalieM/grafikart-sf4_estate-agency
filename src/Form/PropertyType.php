@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Property;
+use App\Entity\Specification;
 use App\Service\PropertyHeatHelper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -24,6 +26,7 @@ class PropertyType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
+                'required' => false
             ])
             ->add('surface', IntegerType::class, [
                 'label' => 'Surface (en m²)',
@@ -43,6 +46,12 @@ class PropertyType extends AbstractType
             ->add('heat', ChoiceType::class, [
                 'label' => 'Chauffage',
                 'choices' => PropertyHeatHelper::getChoices(),
+            ])
+            ->add('specifications', EntityType::class, [
+                'class' => Specification::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false,
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',

@@ -1,0 +1,21 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %} - Nouvelle spécificité{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <section class="my-5">
+
+            <h1>Créer une nouvelle spécificité</h1>
+
+            <hr class="my-4">
+
+            {{ include('admin/specification/_form.html.twig') }}
+
+            <p class="my-4"><a href="{{ path('ADMIN_SPECIFICATION_INDEX') }}" class="btn btn-primary btn-sm">Retour à la liste</a></p>
+
+        </section>
+    </div>
+
+{% endblock %}
