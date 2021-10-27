@@ -11,21 +11,7 @@
         </section>
         <section class="my-5">
             <h2 class="mb-3">En vente actuellement</h2>
-            <div class="row d-flex">
-                {% for property in properties %}
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5 class="card-title mb-4">
-                                    <a href="{{ path('PROPERTY', {slug: property.slug, id: property.id}) }}" title="{{ property.title }}">{{ property.title }}</a>
-                                </h5>
-                                <p class="card-text">{{ property.city }} {{ property.postalCode }}</p>
-                                <p class="text-primary fw-bold fs-1 mb-0">{{ property.formattedPrice }} €</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            {{ include('default/includes/cards-properties.html.twig') }}
             <p><a href="{{ path('PROPERTIES') }}" class="btn btn-primary mt-4">Plus de choix</a></p>
         </section>
     </div>

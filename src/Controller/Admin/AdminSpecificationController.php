@@ -39,6 +39,8 @@ class AdminSpecificationController extends AbstractController
             $entityManager->persist($specification);
             $entityManager->flush();
 
+            $this->addFlash('success', 'La caractéristique a bien été créée');
+
             return $this->redirectToRoute('ADMIN_SPECIFICATION_INDEX', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,6 +61,8 @@ class AdminSpecificationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La caractéristique a bien été modifiée');
+
             return $this->redirectToRoute('ADMIN_SPECIFICATION_INDEX', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -78,6 +82,8 @@ class AdminSpecificationController extends AbstractController
             $entityManager->remove($specification);
             $entityManager->flush();
         }
+
+        $this->addFlash('success', 'La caractéristique a bien été supprimée');
 
         return $this->redirectToRoute('ADMIN_SPECIFICATION_INDEX', [], Response::HTTP_SEE_OTHER);
     }
