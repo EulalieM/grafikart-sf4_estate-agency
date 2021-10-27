@@ -2,12 +2,29 @@
 
 namespace App\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class PropertySearch
 {
     /**
      * @var int|null
      */
     private $maxPrice;
+
+    /**
+     * @var int|null
+     */
+    private $minSurface;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $specifications;
+
+    public function __construct()
+    {
+        $this->specifications = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -42,8 +59,19 @@ class PropertySearch
     }
 
     /**
-     * @var int|null
+     * @return ArrayCollection
      */
-    private $minSurface;
+    public function getSpecifications(): ArrayCollection
+    {
+        return $this->specifications;
+    }
+
+    /**
+     * @param ArrayCollection $specifications
+     */
+    public function setSpecifications(ArrayCollection $specifications): void
+    {
+        $this->specifications = $specifications;
+    }
 
 }
