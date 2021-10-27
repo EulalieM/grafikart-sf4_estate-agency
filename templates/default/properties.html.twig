@@ -5,6 +5,21 @@
 {% block body %}
 
     <div class="container">
+        <div class="my-5">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col">
+                    {{ form_row(form.maxPrice) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.minSurface) }}
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-small">Rechercher</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
         <section class="my-5">
             <h1 class="mb-5">Acheter</h1>
             <div class="row">
@@ -16,7 +31,7 @@
                                     <a href="{{ path('PROPERTY', {slug: property.slug, id: property.id}) }}">{{ property.title }}</a>
                                 </h5>
                                 <p class="card-text">
-                                    {{ property.city }} {{ property.postalCode }}
+                                    {{ property.surface }} m² - {{ property.city }} ({{ property.postalCode }})
                                 </p>
                                 <div class="text-primary fw-bold fs-1 mb-0">{{ property.formattedPrice }} €</div>
                             </div>
