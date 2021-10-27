@@ -4,7 +4,7 @@
             <div class="card mb-4">
                 {% if property.fileName %}
 {#                    <img src="/images/properties/{{ property.fileName }}" alt="{{ property.title }}" class="img-fluid">#}
-                    <img src="{{ vich_uploader_asset(property, 'imageFile') }}" alt="{{ property.title }}" class="img-fluid">
+                    <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('card_img') }}" alt="{{ property.title }}" class="">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title"><a href="{{ path('PROPERTY', {slug: property.slug, id: property.id}) }}" title="{{ property.title }}">{{ property.title }}</a></h5>
