@@ -5,7 +5,6 @@
 {% block body %}
 
     <div class="container">
-
         <section class="my-5">
             <div class="row">
                 <div class="col-md-8">
@@ -19,10 +18,10 @@
                     <h1>{{ property.title }}</h1>
                     <p>{{ property.description }}</p>
                     <p class="text-primary fw-bold fs-1 mb-0">{{ property.formattedPrice }} €</p>
+                    <a href="{{ path('CONTACT') }}" class="btn btn-primary btn-sm">Contacter l'agence</a>
                 </div>
             </div>
         </section>
-
         <section class="my-5">
             <div class="row">
                 <div class="col-md-8">
@@ -76,7 +75,6 @@
                 </div>
             </div>
         </section>
-
     </div>
 
 {% endblock %}

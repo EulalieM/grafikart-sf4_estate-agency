@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <section class="my-5">
+            <h1>Contacter l'agence</h1>
+            <div class="my-5">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-3">
+                        {{ form_row(form.firstName) }}
+                        {{ form_row(form.lastName) }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.phone) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.message) }}
+                </div>
+                <button type="submit" class="btn btn-primary btn-mall">Envoyer</button>
+                {{ form_end(form) }}
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
