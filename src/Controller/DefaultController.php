@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\ContactType;
 use App\Model\Contact;
 use App\Repository\PropertyRepository;
+use App\Service\ContactEmailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,13 +31,14 @@ class DefaultController extends AbstractController
     /**
      * @Route("/contact", name="CONTACT")
      */
-    public function contact(Request $request)
+    public function contact(Request $request, ContactEmailService $email)
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $email->send_email($contact);
             $this->addFlash('success', 'Votre message a bien été envoyé');
             return $this->redirectToRoute('CONTACT');
         }
