@@ -5,7 +5,12 @@ liip_imagine:
   filter_sets:
     cache: ~
 
-    card_img:
+    property_img:
       quality: 75
       filters:
         thumbnail: { size: [ 420, 280 ], mode: outbound }
+
+    property_img_medium:
+      quality: 75
+      filters:
+        thumbnail: { size: [ 770, 500 ], mode: outbound }

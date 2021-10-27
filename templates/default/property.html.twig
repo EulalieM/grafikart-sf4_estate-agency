@@ -7,13 +7,26 @@
     <div class="container">
 
         <section class="my-5">
-            <h1>{{ property.title }}</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    {% if property.fileName %}
+                        <img src="{{ vich_uploader_asset(property, 'imageFile')|imagine_filter('property_img_medium') }}" alt="{{ property.title }}" class="">
+                    {% else %}
+                        <img src="{{ asset('images/img-property.jpg')|imagine_filter('property_img_medium') }}" alt="{{ property.title }}" class="">
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <h1>{{ property.title }}</h1>
+                    <p>{{ property.description }}</p>
+                    <p class="text-primary fw-bold fs-1 mb-0">{{ property.formattedPrice }} €</p>
+                </div>
+            </div>
         </section>
 
         <section class="my-5">
-            <h2>Caractéristiques</h2>
             <div class="row">
                 <div class="col-md-8">
+                    <h2>Caractéristiques</h2>
                     <table class="table table-striped">
                         <tr>
                             <td>Titre</td>
@@ -53,11 +66,15 @@
                         </tr>
                     </table>
                 </div>
+                <div class="col-md-4">
+                    <h2>Spécificités</h2>
+                    <ul class="list-group">
+                        {% for specification in property.specifications %}
+                            <li class="list-group-item">{{ specification.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-        </section>
-
-        <section class="my-5">
-            <h2>Spécificités</h2>
         </section>
 
     </div>
