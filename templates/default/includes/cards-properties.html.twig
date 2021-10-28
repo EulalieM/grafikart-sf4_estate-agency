@@ -2,7 +2,7 @@
     {% for property in properties %}
         <div class="col-md-4">
             <div class="card mb-4">
-                {% if property.fileName %}
+                {% if property.picture %}
 {#                    <img src="/images/properties/{{ property.fileName }}" alt="{{ property.title }}" class="img-fluid">#}
                     <img src="{{ vich_uploader_asset(property, 'imageFile')|imagine_filter('property_img') }}" alt="{{ property.title }}" class="">
                 {% else %}

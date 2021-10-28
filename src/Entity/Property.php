@@ -8,14 +8,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
  * @UniqueEntity("title")
- * @Vich\Uploadable
  */
 class Property
 {
@@ -25,18 +23,6 @@ class Property
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $fileName;
-
-    /**
-     * @var File|null
-     * @Vich\UploadableField(mapping="property_image", fileNameProperty="fileName")
-     */
-    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -107,52 +93,27 @@ class Property
      * @ORM\ManyToMany(targetEntity=Specification::class, inversedBy="properties")
      */
     private $specifications;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="property", orphanRemoval=true, cascade="persist")
+     */
+    private $pictures;
+
+    /**
+     * @var
+     */
+    private $pictureFiles;
     
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->specifications = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getFileName(): ?string
-    {
-        return $this->fileName;
-    }
-
-    /**
-     * @param string|null $fileName
-     * @return Property
-     */
-    public function setFileName(?string $fileName): Property
-    {
-        $this->fileName = $fileName;
-        return $this;
-    }
-
-    /**
-     * @return File|null
-     */
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param File|null $imageFile
-     * @return Property
-     */
-    public function setImageFile(?File $imageFile): Property
-    {
-        $this->imageFile = $imageFile;
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -350,6 +311,59 @@ class Property
             $specification->removeProperty($this);
         }
 
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getProperty() === $this) {
+                $picture->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictureFiles()
+    {
+        return $this->pictureFiles;
+    }
+
+    /**
+     * @param mixed $pictureFiles
+     * @return Property
+     */
+    public function setPictureFiles($pictureFiles): self
+    {
+        foreach ($pictureFiles as $pictureFile) {
+            $picture = new Picture();
+            $picture->setImageFile($pictureFile);
+            $this->addPicture($picture);
+        }
+        $this->pictureFiles = $pictureFiles;
         return $this;
     }
 

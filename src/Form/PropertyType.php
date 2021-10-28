@@ -29,9 +29,10 @@ class PropertyType extends AbstractType
                 'label' => 'Description',
                 'required' => false
             ])
-            ->add('imageFile', FileType::class, [
-                'label' => 'Image',
+            ->add('pictureFiles', FileType::class, [
+                'label' => 'Image(s)',
                 'required' => false,
+                'multiple' => true,
             ])
             ->add('surface', IntegerType::class, [
                 'label' => 'Surface (en m²)',
