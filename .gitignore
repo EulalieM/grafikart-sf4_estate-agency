@@ -1,3 +1,4 @@
+/public/media
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -13,5 +14,5 @@
 /node_modules/
 
 ###> liip/imagine-bundle ###
-/public/media/cache/
+/public/media/cache
 ###< liip/imagine-bundle ###
