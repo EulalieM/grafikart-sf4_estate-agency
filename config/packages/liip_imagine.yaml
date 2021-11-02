@@ -5,6 +5,12 @@ liip_imagine:
   filter_sets:
     cache: ~
 
+    property_img_small:
+      quality: 75
+      filters:
+        relative_resize:
+          widen: 70
+
     property_img:
       quality: 75
       filters:

@@ -23,7 +23,7 @@ class Picture
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $filename;
+    private $fileName;
 
     /**
      * @ORM\ManyToOne(targetEntity=Property::class, inversedBy="pictures")
@@ -42,14 +42,14 @@ class Picture
         return $this->id;
     }
 
-    public function getFilename(): ?string
+    public function getFileName(): ?string
     {
-        return $this->filename;
+        return $this->fileName;
     }
 
-    public function setFilename(?string $filename): self
+    public function setFileName(?string $fileName): self
     {
-        $this->filename = $filename;
+        $this->fileName = $fileName;
 
         return $this;
     }
