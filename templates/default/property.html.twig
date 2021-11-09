@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-8">
                     {% if property.pictures %}
-                        <img src="{{ vich_uploader_asset(property, 'imageFile')|imagine_filter('property_img_medium') }}" alt="{{ property.title }}" class="">
+                        <img src="{{ vich_uploader_asset(property.picture, 'imageFile')|imagine_filter('property_img_medium') }}" alt="{{ property.title }}" class="">
                     {% else %}
                         <img src="{{ asset('images/img-property.jpg')|imagine_filter('property_img_medium') }}" alt="{{ property.title }}" class="">
                     {% endif %}
