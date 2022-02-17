@@ -96,7 +96,7 @@ class Property
     private $specifications;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="property", orphanRemoval=true, cascade="persist")
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="property", orphanRemoval=true, cascade={"persist"})
      */
     private $pictures;
 
