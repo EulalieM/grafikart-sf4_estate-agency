@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Model\Contact;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 
 class ContactEmailService
@@ -11,13 +12,16 @@ class ContactEmailService
     /**
      * @var MailerInterface
      */
-    private $mailer;
+    private MailerInterface $mailer;
 
     public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function send_email(Contact $contact)
     {
         $from = 'noreply@agence.fr';

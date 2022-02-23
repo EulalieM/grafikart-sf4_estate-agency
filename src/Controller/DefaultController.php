@@ -7,8 +7,10 @@ use App\Model\Contact;
 use App\Repository\PropertyRepository;
 use App\Service\ContactEmailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
@@ -30,8 +32,9 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/contact", name="CONTACT")
+     * @throws TransportExceptionInterface
      */
-    public function contact(Request $request, ContactEmailService $email)
+    public function contact(Request $request, ContactEmailService $email): RedirectResponse|Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -48,7 +51,6 @@ class DefaultController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/admin", name="ADMIN", methods={"GET"})
      */
@@ -57,7 +59,5 @@ class DefaultController extends AbstractController
         return $this->render('admin/index.html.twig', [
         ]);
     }
-
-
 
 }
