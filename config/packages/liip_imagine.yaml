@@ -1,3 +1,5 @@
+# ERROR, LIIP NE FONCTIONNE PAS, REVOIR LA CONFIG DOCKER : installer GD...
+
 # See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
 liip_imagine:
   # valid drivers options include "gd" or "gmagick" or "imagick"
