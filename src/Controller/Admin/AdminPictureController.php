@@ -17,7 +17,7 @@ class AdminPictureController extends AbstractController
 {
 
     /**
-     * @Route("/{id}", name="ADMIN_PICTURE_DELETE", methods={"POST"})
+     * @Route("/delete-picture/{id}", name="ADMIN_PICTURE_DELETE", methods={"DELETE"})
      */
     public function delete(Request $request, Picture $picture, ManagerRegistry $doctrine): Response
     {
