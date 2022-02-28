@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,14 +29,14 @@ class AdminPropertyController extends AbstractController
     /**
      * @Route("/new", name="ADMIN_PROPERTY_NEW", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ManagerRegistry $doctrine): Response
     {
         $property = new Property();
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $doctrine->getManager();
             $entityManager->persist($property);
             $entityManager->flush();
 
@@ -63,13 +64,13 @@ class AdminPropertyController extends AbstractController
     /**
      * @Route("/{id}/edit", name="ADMIN_PROPERTY_EDIT", methods={"GET","POST"})
      */
-    public function edit(Request $request, Property $property): Response
+    public function edit(Request $request, Property $property, ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $doctrine->getManager()->flush();
 
             $this->addFlash('success', 'La propriété a bien été modifiée');
 
@@ -85,10 +86,10 @@ class AdminPropertyController extends AbstractController
     /**
      * @Route("/{id}", name="ADMIN_PROPERTY_DELETE", methods={"POST"})
      */
-    public function delete(Request $request, Property $property): Response
+    public function delete(Request $request, Property $property, ManagerRegistry $doctrine): Response
     {
         if ($this->isCsrfTokenValid('delete'.$property->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $doctrine->getManager();
             $entityManager->remove($property);
             $entityManager->flush();
         }

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Specification;
 use App\Form\SpecificationType;
 use App\Repository\SpecificationRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,14 +29,14 @@ class AdminSpecificationController extends AbstractController
     /**
      * @Route("/new", name="ADMIN_SPECIFICATION_NEW", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ManagerRegistry $doctrine): Response
     {
         $specification = new Specification();
         $form = $this->createForm(SpecificationType::class, $specification);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $doctrine->getManager();
             $entityManager->persist($specification);
             $entityManager->flush();
 
@@ -53,13 +54,13 @@ class AdminSpecificationController extends AbstractController
     /**
      * @Route("/{id}/edit", name="ADMIN_SPECIFICATION_EDIT", methods={"GET","POST"})
      */
-    public function edit(Request $request, Specification $specification): Response
+    public function edit(Request $request, Specification $specification, ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(SpecificationType::class, $specification);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $doctrine->getManager()->flush();
 
             $this->addFlash('success', 'La caractéristique a bien été modifiée');
 
@@ -75,10 +76,10 @@ class AdminSpecificationController extends AbstractController
     /**
      * @Route("/{id}", name="ADMIN_SPECIFICATION_DELETE", methods={"POST"})
      */
-    public function delete(Request $request, Specification $specification): Response
+    public function delete(Request $request, Specification $specification, ManagerRegistry $doctrine): Response
     {
         if ($this->isCsrfTokenValid('delete'.$specification->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $doctrine->getManager();
             $entityManager->remove($specification);
             $entityManager->flush();
         }

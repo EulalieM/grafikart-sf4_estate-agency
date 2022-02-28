@@ -3,8 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Picture;
-use App\Entity\Property;
-use App\Repository\PropertyRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +19,12 @@ class AdminPictureController extends AbstractController
     /**
      * @Route("/{id}", name="ADMIN_PICTURE_DELETE", methods={"POST"})
      */
-    public function delete(Request $request, Picture $picture): Response
+    public function delete(Request $request, Picture $picture, ManagerRegistry $doctrine): Response
     {
         $data = json_decode($request->getContent(), true);
 
         if ($this->isCsrfTokenValid('delete' . $picture->getId(), $data['_token'])) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $doctrine->getManager();
             $entityManager->remove($picture);
             $entityManager->flush();
             return new JsonResponse(['success' => 1]);

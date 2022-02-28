@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Property;
 use App\Form\PropertySearchType;
 use App\Model\PropertySearch;
 use App\Repository\PropertyRepository;
