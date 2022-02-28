@@ -21,6 +21,7 @@ class Picture
     private $id;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255)
      */
     private $fileName;

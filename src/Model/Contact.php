@@ -11,34 +11,34 @@ class Contact
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100)
      */
-    private $firstName;
+    private ?string $firstName;
 
     /**
      * @var string|null
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100)
      */
-    private $lastName;
+    private ?string $lastName;
 
     /**
      * @var string|null
      * @Assert\NotBlank()
      */
-    private $phone;
+    private ?string $phone;
 
     /**
      * @var string|null
      * @Assert\NotBlank()
      * @Assert\Email()
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @var string|null
      * @Assert\NotBlank()
      * @Assert\Length(min=10)
      */
-    private $message;
+    private ?string $message;
 
     /**
      * @return string|null

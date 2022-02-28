@@ -18,11 +18,11 @@ class PropertyController extends AbstractController
     /**
      * @var PropertyRepository
      */
-    private $propertyRepository;
+    private PropertyRepository $propertyRepository;
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
 
     public function __construct(PropertyRepository $propertyRepository, EntityManagerInterface $em)
     {
@@ -32,6 +32,8 @@ class PropertyController extends AbstractController
 
     /**
      * @Route("/acheter", name="PROPERTIES")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
     public function properties(PaginatorInterface $paginator, Request $request): Response
