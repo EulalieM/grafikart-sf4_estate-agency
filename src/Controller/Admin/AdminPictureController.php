@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminPictureController extends AbstractController
 {
-
     /**
      * @Route("/delete-picture/{id}", name="ADMIN_PICTURE_DELETE", methods={"DELETE"})
      */
