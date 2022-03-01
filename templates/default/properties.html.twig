@@ -5,6 +5,7 @@
 {% block body %}
 
     <div class="container">
+        <h1 class="my-5">Acheter</h1>
         <div class="my-5">
             {{ form_start(form) }}
             <div class="row">
@@ -23,13 +24,12 @@
             </div>
             {{ form_end(form) }}
         </div>
-        <section class="my-5">
-            <h1 class="mb-5">Acheter</h1>
+        <div class="my-5">
             {{ include('default/includes/cards-properties.html.twig') }}
             <div class="pagination">
                 {{ knp_pagination_render(properties) }}
             </div>
-        </section>
+        </div>
     </div>
 
 {% endblock %}
