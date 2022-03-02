@@ -2,5 +2,6 @@
   "dependencies": {
     "grunt-cli": "^1.4.3",
     "places.js": "^1.19.0"
-  }
-}z
+  },
+  "type": "module"
+}
