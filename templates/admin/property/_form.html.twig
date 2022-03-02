@@ -6,7 +6,7 @@
             <div class="row flex">
                 {% for picture in property.pictures %}
                     <div class="col" style="width: 100px; flex: none; margin: 5px">
-                        <img src="{{ vich_uploader_asset(picture, 'imageFile') }}" width="100" alt="">
+                        <img src="{{ vich_uploader_asset(picture, 'imageFile')|imagine_filter('property_img_small') }}" alt="">
                         <a href="{{ path('ADMIN_PICTURE_DELETE', {'id': picture.id}) }}" class="btn btn-danger btn-sm" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}">
                             Supprimer
                         </a>
