@@ -14,6 +14,7 @@ import Map from './modules/map'
 
 // Select 2 form
 $('select').select2()
+// TODO: add placeholder https://select2.org/placeholders
 
 // Suppression images
 document.querySelectorAll('[data-delete]').forEach(a => {
