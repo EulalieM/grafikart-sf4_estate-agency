@@ -39,6 +39,15 @@ class PropertyRepository extends ServiceEntityRepository
                 ->setParameter('minsurface', $propertySearch->getMinSurface());
         }
 
+        if ($propertySearch->getLat() && $propertySearch->getLng() && $propertySearch->getDistance()) {
+            $query = $query
+                ->select('p')
+                ->andWhere('(6353 * 2 * ASIN(SQRT( POWER(SIN((p.lat - :lat) * pi()/180 / 2), 2) +COS(p.lat * pi()/180) * COS(:lat * pi()/180) * POWER(SIN((p.lng - :lng) * pi()/180 / 2), 2) ))) <= :distance')
+                ->setParameter('lng', $propertySearch->getLng())
+                ->setParameter('lat', $propertySearch->getLat())
+                ->setParameter('distance', $propertySearch->getDistance());
+        }
+
         if ($propertySearch->getSpecifications()->count() > 0) {
             $k = 0;
             foreach ($propertySearch->getSpecifications() as $k => $specification) {

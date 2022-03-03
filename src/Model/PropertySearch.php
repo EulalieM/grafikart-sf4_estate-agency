@@ -21,6 +21,21 @@ class PropertySearch
      */
     private $specifications;
 
+    /**
+     * @var float|null
+     */
+    private $lat;
+
+    /**
+     * @var float|null
+     */
+    private $lng;
+
+    /**
+     * @var integer|null
+     */
+    private $distance;
+
     public function __construct()
     {
         $this->specifications = new ArrayCollection();
@@ -73,5 +88,54 @@ class PropertySearch
     {
         $this->specifications = $specifications;
     }
+
+    /**
+     * @return float|null
+     */
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    /**
+     * @param float|null $lat
+     */
+    public function setLat(?float $lat): void
+    {
+        $this->lat = $lat;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getLng(): ?float
+    {
+        return $this->lng;
+    }
+
+    /**
+     * @param float|null $lng
+     */
+    public function setLng(?float $lng): void
+    {
+        $this->lng = $lng;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getDistance(): ?int
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @param int|null $distance
+     */
+    public function setDistance(?int $distance): void
+    {
+        $this->distance = $distance;
+    }
+
 
 }

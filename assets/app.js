@@ -52,5 +52,16 @@ if (inputAddress !== null) {
     })
 }
 
+let searchAddress = document.querySelector('#search_address')
+if (searchAddress !== null) {
+    let place = Places({
+        container: document.querySelector('#search_address')
+    })
+    place.on('change', e => {
+        document.querySelector('#lat').value = e.suggestion.latlng.lat
+        document.querySelector('#lng').value = e.suggestion.latlng.lng
+    })
+}
+
 // Leaflet
 Map.init()
