@@ -36,6 +36,11 @@ class PropertySearch
      */
     private $distance;
 
+    /**
+     * @var string|null
+     */
+    private $address;
+
     public function __construct()
     {
         $this->specifications = new ArrayCollection();
@@ -135,6 +140,22 @@ class PropertySearch
     public function setDistance(?int $distance): void
     {
         $this->distance = $distance;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string|null $address
+     */
+    public function setAddress(?string $address): void
+    {
+        $this->address = $address;
     }
 
 

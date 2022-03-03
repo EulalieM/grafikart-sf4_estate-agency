@@ -11,6 +11,9 @@ import './bootstrap'
 import 'select2'
 import Places from 'places.js'
 import Map from './modules/map'
+import 'slick-carousel'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 // Select 2 form
 $('select').select2()
@@ -66,3 +69,8 @@ if (searchAddress !== null) {
 
 // Leaflet
 Map.init()
+
+// Slick
+$('[data-slider]').slick({
+    dots: true
+})

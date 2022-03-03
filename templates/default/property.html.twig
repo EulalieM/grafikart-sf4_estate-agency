@@ -8,7 +8,7 @@
         <section class="my-5">
             <div class="row">
                 <div class="col-md-8">
-                    <div data-slider>
+                    <div data-slider style="width: 700px;">
                         {% if property.pictures is empty %}
                             <img src="{{ asset('images/img-property.jpg')|imagine_filter('property_img_medium') }}" alt="{{ property.title }}">
                         {% else %}
