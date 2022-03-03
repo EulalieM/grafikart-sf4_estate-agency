@@ -68,8 +68,8 @@ class PropertyType extends AbstractType
             ->add('postal_code', TextType::class, [
                 'label' => 'Code postal',
             ])
-            ->add('lat')
-            ->add('lng')
+            ->add('lat', HiddenType::class)
+            ->add('lng', HiddenType::class)
             ->add('sold', CheckboxType::class, [
                 'label' => 'Vendu',
                 'required' => false
