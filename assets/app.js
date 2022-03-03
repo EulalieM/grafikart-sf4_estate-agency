@@ -9,7 +9,8 @@ let $ = require('jquery')
 import './styles/app.css'
 import './bootstrap'
 import 'select2'
-import Places from "places.js"
+import Places from 'places.js'
+import Map from './modules/map'
 
 // Select 2 form
 $('select').select2()
@@ -50,3 +51,6 @@ if (inputAddress !== null) {
         document.querySelector('#property_lng').value = e.suggestion.latlng.lng
     })
 }
+
+// Leaflet
+Map.init()
